@@ -1,4 +1,5 @@
 # StartFromZero-Maven
+##简介
 Maven 多模块项目管理
 1 安装maven（maven实战）
 安装maven 并配置环境变量
@@ -6,23 +7,37 @@ Maven 多模块项目管理
 或者再本地仓库目录中新建setting.xml文件，localRepository节点设置为当前路径
 以上配置可通过eclipse可视化界面操作
 
-2 节点介绍：
-<groupId></groupId> 项目名称
-<artifactId></artifactId> 模块名称 通常项目名称-模块名称
-<version></version> 版本号
-GAV: 以上三个值确定一个依赖
-GAV查询网址：
-http://mvnrepository.com/
-http://www.sonatype.org/
+##pom.xml  
+pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)定义了项目的基本信息，用于描述项目如何构建，生命项目依赖等等  
+###结构介绍
+- project是pom.xml文件的根元素，声明了一些POM相关的命名空间和xsd元素  
+	`<project xmlns="http://maven.apache.org/POM/4.0.0"`  
+	`　　　　　　　　xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"`  
+  	`　　　　　　　　xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"></project>`  
+- GAV 定义一个项目的基本坐标
+	- groupId 项目所在的公司或组织，com.google.myapp  
+	- artifactId 当前项目在公司或组中的唯一ID，通常使用项目名称-模块名称  
+	- version 版本号  
 
-3 命令：
-mvn clean 清理，会把target文件夹中的class文件等删除
-mvn compile 将代码编译到target文件中
-mvn test 运行测试
-mvn package 打包
-mvn install 将打好的包放在本地仓库中，供其他项目使用
-mvn deploy 发布到私有服务器上
-mvn archetype:generate 创建文件目录（骨架）
+- dependencies 项目依赖
+	- dependency 具体依赖GAV信息
+		- groupId
+		- artifactId
+		- version
+		- scope 管理依赖部署
+			- compile 默认值，编译 打包可用
+			- provided 编译 测试可用
+			- runtime 运行时可用
+			- test 测试可用
+			- system 类似于provided，需要显式提供包含依赖的jar，maven不会在repository中查找他
+##命令
+- mvn clean 清理，会把target文件夹中的class文件等删除
+- mvn compile 将代码编译到target文件中
+- mvn test 运行测试
+- mvn package 打包
+- mvn install 将打好的包放在本地仓库中，供其他项目使用
+- mvn deploy 发布到私有服务器上
+- mvn archetype:generate 创建文件目录（骨架）
 
 4 依赖
 4.1 设置依赖
@@ -76,3 +91,9 @@ f --> d, c 如果路径长短不一致，按最短路径，即依赖b2.0
 创建私有服务器
 
 6 生命周期和插件
+
+
+##附录
+- GAV查询网址：  
+	- [http://mvnrepository.com/](http://mvnrepository.com/ "http://mvnrepository.com/")  
+	- [http://www.sonatype.org/](http://www.sonatype.org/ "http://www.sonatype.org/")  

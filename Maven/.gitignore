@@ -9,10 +9,11 @@
 
 #对于一般程序而言，.class, .project, .classpath文件，bin, .settings, build目录等本地信息不需要提交
 #配置如下：
-.class
+*.class
 .project
 .classpath
 bin/
 .settings/
 build/
 META-INF/
+/target/
