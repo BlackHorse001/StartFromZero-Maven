@@ -14,22 +14,29 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 	`<project xmlns="http://maven.apache.org/POM/4.0.0"`  
 	`　　　　　　　　xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"`  
   	`　　　　　　　　xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"></project>`  
-- GAV 定义一个项目的基本坐标
-	- groupId 项目所在的公司或组织，com.google.myapp  
-	- artifactId 当前项目在公司或组中的唯一ID，通常使用项目名称-模块名称  
+- GAV 定义一个项目的基本坐标(必须)
+	- groupId 定义当前maven项目隶属的实际项目，采用反向域名的表示方式与Java包名的表示方式类似，com.google.myapp  
+	- artifactId 定义实际项目中的一个maven项目(模块)，通常使用项目名称-模块名称  
 	- version 版本号  
 
+- packaging 定义项目的打包方式(可选)
+	- jar 默认
+	- war
+- classifier 定义构件输出的附属构件，如javadoc和javasource
 - dependencies 项目依赖
 	- dependency 具体依赖GAV信息
 		- groupId
 		- artifactId
 		- version
 		- scope 管理依赖部署
-			- compile 默认值，编译 打包可用
+			- compile 默认值，编译 测试 运行 打包可用
 			- provided 编译 测试可用
-			- runtime 运行时可用
-			- test 测试可用
-			- system 类似于provided，需要显式提供包含依赖的jar，maven不会在repository中查找他
+			- runtime 测试运行时可用
+			- test 编译运行测试代码可用
+			- system 类似于provided，需要通过systemPath元素显式提供包含依赖的jar，maven不会在repository中查找他
+		- type 依赖的类型，默认为jar，对应于项目坐标定义的packaging
+		- optional 标记依赖是否可选
+		- exclusions 用来排除传递性依赖
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
 - mvn compile 将代码编译到target文件中
