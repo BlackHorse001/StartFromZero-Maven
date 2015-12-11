@@ -37,6 +37,17 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 		- type 依赖的类型，默认为jar，对应于项目坐标定义的packaging
 		- optional 标记依赖是否可选
 		- exclusions 用来排除传递性依赖
+
+##依赖
+###配置依赖
+`<dependencies>`  
+　　`<dependency>`  
+　　　　`<groupId></groupId>`  
+　　　　`<artifactId></artifactId>`  
+　　　　`<version></version>`  
+　　　　`<scope></scope> <!--默认compile-->`  
+　　`</dependency>`  
+`</dependencies>` 
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
 - mvn compile 将代码编译到target文件中
@@ -48,14 +59,14 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 
 4 依赖
 4.1 设置依赖
-<dependencies>
-	<dependency>
-		<groupId></groupId>
-		<artifactId></artifactId>
-		<version></version>
-		<scope></scope> <!--默认compile，编译范围依赖-->
-	</dependency>
-</dependencies>
+	`<dependencies>`  
+	`	<dependency>`  
+	`		<groupId></groupId>`  
+	`		<artifactId></artifactId>`  
+	`		<version></version>`  
+	`		<scope></scope> <!--默认compile-->`  
+	`	</dependency>`  
+	`</dependencies>`  
 4.2 依赖具有传递性
 A-->C B-->A ==> B-->C
 scope:
