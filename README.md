@@ -63,6 +63,7 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 |       provided      | provided |   -  | provided | provided|
 |        runtime      |  runtime |   -  |     -    | runtime |
 
+
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
 - mvn compile 将代码编译到target文件中
