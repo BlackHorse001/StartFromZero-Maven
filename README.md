@@ -58,10 +58,12 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 ###传递性依赖
 假设A依赖于B，B依赖于C，则A对于C是传递性依赖。我们称A对于B是第一直接依赖，B对于C是第二直接依赖  
 |第一直接依赖/第二直接依赖|  compile | test | provided | runtime |
+|---------------------|----------|------|----------|---------|
 |       compile       |  compile |   -  |     -    | runtime |
 |      	  test        |   test   |   -  |     -    |   test  |
 |       provided      | provided |   -  | provided | provided|
 |        runtime      |  runtime |   -  |     -    | runtime |
+
 
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
