@@ -46,8 +46,24 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 　　　　`<artifactId></artifactId>`  
 　　　　`<version></version>`  
 　　　　`<scope></scope> <!--默认compile-->`  
+　　　　`<optional></optional> <!--标记依赖是否可选-->`  
+　　　　`<exclusions> <!--排除传递性依赖-->`  
+　　　　　　`<exclusion>`  
+　　　　　　`...`  
+　　　　　　`</exclusion>`  
+　　　　`</exclusions>`  
 　　`</dependency>`  
 `</dependencies>` 
+
+###传递性依赖
+假设A依赖于B，B依赖于C，则A对于C是传递性依赖。我们称A对于B是第一直接依赖，B对于C是第二直接依赖  | column | column |
+|--------|--------|--------|--------|--------|--------|
+|a|b |c|d|d|        |
+|        |        |        |        |        |        |
+|        |        |        |        |        |        |
+|        |        |        |        |        |        |
+|        |        |        |        |        |        |
+
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
 - mvn compile 将代码编译到target文件中
