@@ -14,6 +14,7 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 	`<project xmlns="http://maven.apache.org/POM/4.0.0"`  
 	`　　　　　　　　xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"`  
   	`　　　　　　　　xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"></project>`  
+- properties 定义常量，供下文通过${xxx}引用 如拥有多个依赖spring-core-4.17,spring-aspect-4.17等，如要升级依赖，就需要修改很多地方。可以使用在properties下定义常量`<springVersion>4.17</springVersion>`, 下文通过${springVersion}引用
 - GAV 定义一个项目的基本坐标(必须)
 	- groupId 定义当前maven项目隶属的实际项目，采用反向域名的表示方式与Java包名的表示方式类似，com.google.myapp  
 	- artifactId 定义实际项目中的一个maven项目(模块)，通常使用项目名称-模块名称  
@@ -46,10 +47,11 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 　　　　`<artifactId></artifactId>`  
 　　　　`<version></version>`  
 　　　　`<scope></scope> <!--默认compile-->`  
-　　　　`<optional></optional> <!--标记依赖是否可选-->`  
+　　　　`<optional></optional> <!--标记依赖是否可选，依赖不会被传递-->`  
 　　　　`<exclusions> <!--排除传递性依赖-->`  
-　　　　　　`<exclusion>`  
-　　　　　　`...`  
+　　　　　　`<exclusion>  <!--只需要groupId和artifactId就可定位要排除的依赖-->`  
+　　　　　　　　`<groupId></groupId>`  
+　　　　　　　　`<artifactId></artifactId>`  
 　　　　　　`</exclusion>`  
 　　　　`</exclusions>`  
 　　`</dependency>`  
@@ -64,7 +66,13 @@ pom.xml是maven项目的核心。POM(Project Object Model，项目对象模型)�
 |test|test|-|-|test|
 |provided|provided|-|provided|provided|
 |runtime|runtime|-|-|runtime|
-asdfasdfasfas
+针对传递性依赖可能引起的冲突，如传递性依赖中包含两个相同的依赖，或同一类型依赖的不同版本，maven坚持两项基本原则：  
+1. 最短路径优先
+2. 最先生命优先
+
+
+##仓库
+
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
 - mvn compile 将代码编译到target文件中
@@ -74,44 +82,7 @@ asdfasdfasfas
 - mvn deploy 发布到私有服务器上
 - mvn archetype:generate 创建文件目录（骨架）
 
-4 依赖
-4.1 设置依赖
-	`<dependencies>`  
-	`	<dependency>`  
-	`		<groupId></groupId>`  
-	`		<artifactId></artifactId>`  
-	`		<version></version>`  
-	`		<scope></scope> <!--默认compile-->`  
-	`	</dependency>`  
-	`</dependencies>`  
-4.2 依赖具有传递性
-A-->C B-->A ==> B-->C
-scope:
-test 测试范围有效 编译和打包时，不会使用这个依赖
-compile（默认） 编译打包有效
-provided 编译测试有效
-runtime 运行时依赖，编译时不依赖
-4.3 依赖传递性冲突：
-case 1 
-a --> b1.0
-c --> b2.0
-d --> a, c 按先后顺序依赖， 即依赖b1.0
 
-case 2
-a --> b1.0
-c --> b2.0
-d --> a, c
-f --> d, c 如果路径长短不一致，按最短路径，即依赖b2.0
-
-如果希望精确的控制依赖包，可以使用依赖的排除功能
-<dependency>
-		<groupId></groupId>
-		<artifactId></artifactId>
-		<version></version>
-		<exclusions>
-			<exclusion>{GAV}</exclusion>
-		</exclusions>
-</dependency>
 
 4.4 聚合依赖，继承（POM project object module）
 新建一个项目只保留pom.xml文件，通过
