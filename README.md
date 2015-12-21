@@ -124,6 +124,37 @@ Maven包含三种生命周期，分别为clean、default、site。每个生命�
 	- site-deploy 将生成的站点发布到服务器上
 ###插件
 Maven的核心仅定义了抽象的生命周期，具体的任务都是交由插件来完成的，插件都是以独立的构件形式存在。
+
+##聚合与继承
+###聚合
+聚合应用在多模块的项目中，使用一条命令构建多个项目模块，而不需要分别构建多个模块  
+新建一个空项目，设置pom.xml的GAV等必要属性，packaging元素值必须为*pom*。使用modules元素引用多个模块  
+`...`
+`<packaging>pom</packaging>`
+`<modules>`
+      `<module>{module-artifactId1}</module>`
+      `<module>{module-artifactId2}</module>`
+      `...`
+`</molules>`
+`...`
+
+###继承
+在面向对象的思想中，会把共性内容抽象独立出来。Maven也沿用了这一思想，叫做继承  
+新建一个空项目，作为抽象的顶层，供其他模块继承，设置pom.xml的GAV等必要属性，packaging元素值必须为*pom*。将共性依赖等配置在该文件中。子模块通过parent元素指定父模块的GAV及其相对的pom文件路径  
+`<parent>`
+	　　`<groupId></groupId>`
+    　　`<artifactId></artifactId>`
+    　　`<version></version>`
+    　　`<relativePath>../pom.xml</relativePath> <!-- 父模块pom文件相对路径，默认../pom.xml-->`
+`</parent>`
+
+子模块可以继承属性：
+- groupId
+- version
+- description
+
+
+
 ##命令
 - mvn clean 清理，会把target文件夹中的class文件等删除
 - mvn compile 将代码编译到target文件中
