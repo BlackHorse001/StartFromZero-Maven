@@ -149,9 +149,25 @@ Maven的核心仅定义了抽象的生命周期，具体的任务都是交由插
 `</parent>`
 
 子模块可以继承属性：
-- groupId
-- version
-- description
+- groupId 项目组Id
+- version 项目版本
+- description 项目描述
+- organization 项目的组织信息
+- inceptionYear 项目创始年份
+- url 项目URL
+- developers 项目开发者信息
+- contributors 项目贡献者信息
+- distributionManagement 部署配置
+- issueManagement 缺陷跟踪系统信息
+- ciManagement 持续集成系统信息
+- scm 版本控制系统信息
+- mailingLists 项目邮件列表信息
+- properties 自定义的Maven属性
+- dependencies 依赖配置
+- dependencyManagement 依赖管理配置
+- repositories 仓库配置
+- build 源码目录配置、输出目录配置、插件配置、插件管理配置等
+- reporting 项目报告输出目录配置、报告插件配置等
 
 
 
