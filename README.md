@@ -129,23 +129,23 @@ Maven的核心仅定义了抽象的生命周期，具体的任务都是交由插
 ###聚合
 聚合应用在多模块的项目中，使用一条命令构建多个项目模块，而不需要分别构建多个模块  
 新建一个空项目，设置pom.xml的GAV等必要属性，packaging元素值必须为*pom*。使用modules元素引用多个模块  
-`...`
-`<packaging>pom</packaging>`
-`<modules>`
-      `<module>{module-artifactId1}</module>`
-      `<module>{module-artifactId2}</module>`
-      `...`
-`</molules>`
+`...`  
+`<packaging>pom</packaging>`  
+`<modules>`  
+　　`<module>{module-artifactId1}</module>`  
+　　`<module>{module-artifactId2}</module>`  
+　　　　`...`  
+`</molules>`  
 `...`
 
 ###继承
 在面向对象的思想中，会把共性内容抽象独立出来。Maven也沿用了这一思想，叫做继承  
 新建一个空项目，作为抽象的顶层，供其他模块继承，设置pom.xml的GAV等必要属性，packaging元素值必须为*pom*。将共性依赖等配置在该文件中。子模块通过parent元素指定父模块的GAV及其相对的pom文件路径  
-`<parent>`
-	　　`<groupId></groupId>`
-    　　`<artifactId></artifactId>`
-    　　`<version></version>`
-    　　`<relativePath>../pom.xml</relativePath> <!-- 父模块pom文件相对路径，默认../pom.xml-->`
+`<parent>`  
+	　　`<groupId></groupId>`  
+    　　`<artifactId></artifactId>`  
+    　　`<version></version>`  
+    　　`<relativePath>../pom.xml</relativePath> <!-- 父模块pom文件相对路径，默认../pom.xml-->`  
 `</parent>`
 
 子模块可以继承属性：
@@ -179,22 +179,6 @@ Maven的核心仅定义了抽象的生命周期，具体的任务都是交由插
 - mvn install 将打好的包放在本地仓库中，供其他项目使用
 - mvn deploy 发布到私有服务器上
 - mvn archetype:generate 创建文件目录（骨架）
-
-
-
-4.4 聚合依赖，继承（POM project object module）
-新建一个项目只保留pom.xml文件，通过
-<packaging>pom</packaging>
-<modules>
-	<module></module>
-</modules>
-来引用模块, 然后统一打包部署
-
-
-5 仓库
-创建私有服务器
-
-6 生命周期和插件
 
 
 ##附录
