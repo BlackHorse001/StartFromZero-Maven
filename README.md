@@ -180,6 +180,12 @@ Maven的核心仅定义了抽象的生命周期，具体的任务都是交由插
 - mvn deploy 发布到私有服务器上
 - mvn archetype:generate 创建文件目录（骨架）
 
+##FAQ
+- 执行maven test，控制台log中文乱码  
+在pom.xml中添加：  
+`<properties>`  
+　　`<argLine>-Dfile.encoding=UTF-8</argLine>`  
+`</properties>`
 
 ##附录
 - GAV查询网址：  
