@@ -157,7 +157,7 @@ Maven的核心仅定义了抽象的生命周期，具体的任务都是交由插
 - url 项目URL
 - developers 项目开发者信息
 - contributors 项目贡献者信息
-- distributionManagement 部署配置
+- distributionManagement 提供了统一管理依赖版本号的方式。一般在父项目的pom中定义依赖，子项目只需要引用依赖的GA属性而不用写版本号。此外，distributionManagement只是生命依赖，并不会引入依赖，所以需要子项目显示引入依赖
 - issueManagement 缺陷跟踪系统信息
 - ciManagement 持续集成系统信息
 - scm 版本控制系统信息
